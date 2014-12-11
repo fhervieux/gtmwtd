@@ -2,7 +2,7 @@
     <md-card ng-repeat="change in changes">
         {{ change.subject }}<br>
         {{ getLastGrade(change) }}<br>
-        news: {{ change._comments | json }}<br>
+        news: {{ change._news | json }}<br>
         {{ comments | json }}
     </md-card>
     <md-card>

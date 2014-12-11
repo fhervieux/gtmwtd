@@ -4,8 +4,9 @@ angular.module 'app.core'
   .factory 'NewsService', ($http, $q, Comment) ->
       getNews: (change, limit) ->
         news = []
+
         for index, message of change.messages
-          moment(message.date)
+          console.log(message)
           if reviewMatch = reviewPattern.exec(message.message)
             news.push {
               type: 'REVIEW'
@@ -13,20 +14,21 @@ angular.module 'app.core'
               grade: reviewMatch[3]
               comments: reviewMatch[5]
               reply: reviewMatch[7]
-#              match: reviewMatch
+              authorId: message.author._account_id
+              timestamp: message.date
             }
-        news
 
-      getNews2: (change, limit) ->
-        gerritComments = (Comment.getComments(change.id, revisionId) for revisionId, revision of change.revisions)
-        comments = []
+        gerritComments = (Comment.query(change.id, revisionId) for revisionId, revision of change.revisions)
         $q.all(gerritComments).then (results) ->
           for gerritComment in results
             for file, fileComments of gerritComment.data
               for comment in fileComments
-                comments.push {
+                news.push {
+                  type: 'COMMENT'
                   id: comment.id
                   message: comment.message
+                  file: file
+                  authorId: comment.author._account_id
                   timestamp: comment.updated
                 }
-          comments
+          news
