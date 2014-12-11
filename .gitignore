@@ -1,0 +1,7 @@
+*.js
+*.map
+
+bower_components/
+
+.idea/
+.vagrant/

@@ -1,0 +1,11 @@
+<md-content>
+    <md-card ng-repeat="change in changes">
+        {{ change.subject }}<br>
+        {{ getLastGrade(change) }}<br>
+        news: {{ change._comments | json }}<br>
+        {{ comments | json }}
+    </md-card>
+    <md-card>
+        <pre>{{ changes | json }}</pre>
+    </md-card>
+</md-content>

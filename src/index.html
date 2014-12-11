@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="/bower_components/angular-material/themes/default-theme.css">
+    <title></title>
+</head>
+<body>
+
+<md-content>
+    <div layout="horizontal">
+        <md-button ui-sref="projects" aria-label="Projects">Projects</md-button>
+        <md-button ui-sref="reviews" aria-label="Reviews">Reviews</md-button>
+    </div>
+
+    <div ui-view></div>
+</md-content>
+
+<script src="/bower_components/moment/moment.js"></script>
+
+<script src="/bower_components/angular/angular.js"></script>
+<script src="/bower_components/angular-resource/angular-resource.js"></script>
+
+<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+<script src="/bower_components/hammerjs/hammer.js"></script>
+<script src="/bower_components/angular-animate/angular-animate.js"></script>
+<script src="/bower_components/angular-aria/angular-aria.js"></script>
+<script src="/bower_components/angular-material/angular-material.js"></script>
+
+<script src="/src/app/app.module.js"></script>
+
+<script src="/src/app/core/core.module.js"></script>
+<script src="/src/app/core/core.config.js"></script>
+<script src="/src/app/core/resources/change.js"></script>
+<script src="/src/app/core/resources/comment.js"></script>
+<script src="/src/app/core/resources/project.js"></script>
+<script src="/src/app/core/services/history.service.js"></script>
+<script src="/src/app/core/services/news.service.js"></script>
+
+<script src="/src/app/projects/projects.module.js"></script>
+<script src="/src/app/projects/projects.state.js"></script>
+<script src="/src/app/projects/projects.controller.js"></script>
+
+<script src="/src/app/reviews/reviews.module.js"></script>
+<script src="/src/app/reviews/reviews.state.js"></script>
+<script src="/src/app/reviews/reviews.controller.js"></script>
+
+</body>
+</html>
