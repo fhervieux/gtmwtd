@@ -18,10 +18,15 @@ angular.module 'app.core'
         news
 
       getNews2: (change, limit) ->
-        console.log(change.id)
-        comments = (Comment.get({ changeId: change.id, revisionId: revisionId }).$promise for revisionId, revision of change.revisions)
-        $q.all(comments).then (results) ->
-          for res in results
-            console.log(res)
-        console.log(comments)
-        comments
+        gerritComments = (Comment.getComments(change.id, revisionId) for revisionId, revision of change.revisions)
+        comments = []
+        $q.all(gerritComments).then (results) ->
+          for gerritComment in results
+            for file, fileComments of gerritComment.data
+              for comment in fileComments
+                comments.push {
+                  id: comment.id
+                  message: comment.message
+                  timestamp: comment.updated
+                }
+          comments
